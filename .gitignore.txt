@@ -1,0 +1,6 @@
+.vs/
+SQL-CSharp/.vs
+SQL-CSharp/SQL-CSharp/.vs
+SQL-CSharp/SQL-CSharp/obj/
+
+
