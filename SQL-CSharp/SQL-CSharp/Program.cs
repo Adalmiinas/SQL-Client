@@ -41,7 +41,7 @@ namespace SQL_CSharp
         static string GetConnectionString()
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = "N-FI-01-3756\\SQLEXPRESS01";
+            builder.DataSource = "N-FI-01-9981\\SQLEXPRESS";
             builder.InitialCatalog = "Chinook";
             builder.IntegratedSecurity= true;
             builder.TrustServerCertificate = true;
