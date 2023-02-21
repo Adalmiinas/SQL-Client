@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using SQL_CSharp.models;
 using SQL_CSharp.repositories;
 
 namespace SQL_CSharp
@@ -12,7 +13,8 @@ namespace SQL_CSharp
             var customerByID = customerRepository.GetById(3);
             var customerByName = customerRepository.GetCustomerByName("an");
 
-
+            customerRepository.Add(new Customer(60, "Mike", "Test", "Finland", "33000", "020202", "email@com.com"));
+            customerRepository.Update(new Customer(60, "Ada", "Nimi", "Finland", "33000", "020202", "email@com.com"));
 
             foreach (var customer in allCustomers)
             {

@@ -147,7 +147,20 @@ namespace SQL_CSharp.repositories
 
         public void Update(Customer entity)
         {
-            throw new NotImplementedException();
+            using var connection = new SqlConnection(ConnectionString);
+            connection.Open();
+            var sql = "UPDATE Customer SET FirstName = @FirstName, LastName = @Lastname, Country = @Country," +
+                "PostalCode = @PostalCode, Phone = @Phone, Email = @Email WHERE CustomerId = @CustomerId";
+            using var command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@FirstName", entity.firstname);
+            command.Parameters.AddWithValue("@LastName", entity.lastname);
+            command.Parameters.AddWithValue("@Country", entity.country);
+            command.Parameters.AddWithValue("@PostalCode", entity.postalcode);
+            command.Parameters.AddWithValue("@Phone", entity.phone);
+            command.Parameters.AddWithValue("@Email", entity.email);
+            command.Parameters.AddWithValue("@CustomerId", entity.id);
+            command.ExecuteNonQuery();
+
         }
     }
 }
