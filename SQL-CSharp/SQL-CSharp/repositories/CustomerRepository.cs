@@ -165,8 +165,6 @@ namespace SQL_CSharp.repositories
 
         public IEnumerable<Customer> GetListOfCustomersWithLimitAndOffset(int offset, int limit)
         {
-            //string offsetString = offset.ToString();
-            //string limitString = limit.ToString();
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
             var sql = $"SELECT CustomerID, FirstName, LastName, Country, PostalCode, Phone, Email FROM Customer ORDER BY CustomerId OFFSET {offset} ROWS FETCH NEXT {limit} ROWS only";
