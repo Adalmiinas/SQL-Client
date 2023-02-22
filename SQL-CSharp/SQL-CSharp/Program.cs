@@ -13,9 +13,12 @@ namespace SQL_CSharp
             var customerByID = customerRepository.GetById(3);
             var customerByName = customerRepository.GetCustomerByName("an");
             var getCustomerListWithLimitAndOffset = customerRepository.GetListOfCustomersWithLimitAndOffset(5, 24);
+            var customerCountryRepository = new CustomerCountryRepository() { ConnectionString = GetConnectionString()};
+            var customerCountByCountry = customerCountryRepository.CustomerCountByCountry();
 
             //customerRepository.Add(new Customer(60, "Mike", "Test", "Finland", "33000", "020202", "email@com.com"));
-            customerRepository.Update(new Customer(60, "Ada", "Nimi", "Finland", "33000", "020202", "email@com.com"));
+
+            //customerRepository.Update(new Customer(60, "Ada", "Nimi", "Finland", "33000", "020202", "email@com.com"));
 
             foreach (var customer in allCustomers)
             {
@@ -55,6 +58,15 @@ namespace SQL_CSharp
                 Console.WriteLine(customer.email);
             }
             //Console.WriteLine("\n" + getCustomerListWithLimitAndOffset.id + ":" + getCustomerListWithLimitAndOffset.firstname + "\t" + getCustomerListWithLimitAndOffset.lastname + "\t" + getCustomerListWithLimitAndOffset.country + "\t" + getCustomerListWithLimitAndOffset.postalcode + "\t" + getCustomerListWithLimitAndOffset.phone + "\t" + getCustomerListWithLimitAndOffset.email);
+            Console.WriteLine();
+            Console.WriteLine();
+
+            foreach (var country in customerCountByCountry)
+            {
+                Console.Write(country.country + ":");
+                Console.Write(country.id + "\n");
+                
+            }
 
         }
         static string GetConnectionString()
