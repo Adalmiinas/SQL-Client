@@ -8,34 +8,35 @@ using System.Threading.Tasks;
 
 namespace SQL_CSharp.repositories
 {
-    public class CustomerCountryRepository: ICustomerCountryRepository
+    public class CustomerGenreRepository : ICustomerGenreRepository
     {
         public string ConnectionString { get; set; } = string.Empty;
 
-        public void Add(CustomerCountry entity)
+        public void Add(CustomerGenre entity)
         {
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Return list of countries with the amount of customers from there in decending order.
+        /// Returns customers most popular genre.
         /// </summary>
-        /// <returns>IEnumerable<CustomerCountry></returns>
-        public IEnumerable<CustomerCountry> CustomerCountByCountry()
+        /// <returns>IEnumerable<CustomerGenre></returns>
+        public IEnumerable<CustomerGenre> CustomerGenre()
         {
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
-            var sql = "SELECT Country, COUNT (*) AS Number FROM Customer GROUP BY Country ORDER BY Number DESC";
+            var sql = "SELECT CustomerId, MAX (Name) AS Genre FROM ( SELECT Invoice.CustomerId, Genre.Name AS Name FROM Invoice " +
+              "JOIN InvoiceLine ON Invoice.InvoiceId = InvoiceLine.InvoiceId JOIN Track ON Track.TrackId = InvoiceLine.TrackId " +
+              "JOIN Genre ON Track.GenreId = Genre.GenreId) AS InTable GROUP BY CustomerId ORDER BY CustomerId ASC;";
             using var command = new SqlCommand(sql, connection);
             using SqlDataReader reader = command.ExecuteReader();
-            
+
             while (reader.Read())
             {
-                yield return new CustomerCountry(
-                    
-                    reader.GetString(0),
-                    reader.GetInt32(1))
-                    ;
+                yield return new CustomerGenre(
+
+                    reader.GetInt32(0),
+                    reader.GetString(1));
             }
         }
 
@@ -44,19 +45,20 @@ namespace SQL_CSharp.repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<CustomerCountry> GetAll()
+        public IEnumerable<CustomerGenre> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public CustomerCountry GetById(int id)
+        public CustomerGenre GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(CustomerCountry entity)
+        public void Update(CustomerGenre entity)
         {
             throw new NotImplementedException();
         }
     }
 }
+

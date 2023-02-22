@@ -8,33 +8,33 @@ using System.Threading.Tasks;
 
 namespace SQL_CSharp.repositories
 {
-    public class CustomerCountryRepository: ICustomerCountryRepository
+    public class CustomerSpenderRepository : ICustomerSpenderRepository
     {
         public string ConnectionString { get; set; } = string.Empty;
 
-        public void Add(CustomerCountry entity)
+        public void Add(CustomerSpender entity)
         {
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Return list of countries with the amount of customers from there in decending order.
+        /// Return customers spending descending from the highest.
         /// </summary>
-        /// <returns>IEnumerable<CustomerCountry></returns>
-        public IEnumerable<CustomerCountry> CustomerCountByCountry()
+        /// <returns>IEnumerable<CustomerSpender></returns>
+        public IEnumerable<CustomerSpender> CustomerSpendingById()
         {
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
-            var sql = "SELECT Country, COUNT (*) AS Number FROM Customer GROUP BY Country ORDER BY Number DESC";
+            var sql = "SELECT CustomerId, SUM(Total) AS TotalSales FROM Invoice GROUP BY CustomerId ORDER BY TotalSales DESC;";
             using var command = new SqlCommand(sql, connection);
             using SqlDataReader reader = command.ExecuteReader();
-            
+
             while (reader.Read())
             {
-                yield return new CustomerCountry(
-                    
-                    reader.GetString(0),
-                    reader.GetInt32(1))
+                yield return new CustomerSpender(
+
+                    reader.GetInt32(0),
+                    reader.GetDecimal(1))
                     ;
             }
         }
@@ -44,17 +44,17 @@ namespace SQL_CSharp.repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<CustomerCountry> GetAll()
+        public IEnumerable<CustomerSpender> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public CustomerCountry GetById(int id)
+        public CustomerSpender GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(CustomerCountry entity)
+        public void Update(CustomerSpender entity)
         {
             throw new NotImplementedException();
         }

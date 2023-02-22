@@ -14,6 +14,7 @@ namespace SQL_CSharp.repositories
         T GetById(Id id);
         // Adds new object
         void Add(T entity);
+        //Update object
         void Update(T entity);
         void Delete(Id id);
     }

@@ -13,6 +13,8 @@ namespace SQL_CSharp.repositories
     public class CustomerRepository : ICustomerRepository
     {
         public string ConnectionString { get; set; } = string.Empty;
+
+        //Adds new customer to the database.
         public void Add(Customer entity)
         {
             using var connection = new SqlConnection(ConnectionString);
@@ -33,6 +35,10 @@ namespace SQL_CSharp.repositories
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Returns all customers from the database.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Customer> GetAll()
         {
             using var connection = new SqlConnection(ConnectionString);
@@ -68,6 +74,11 @@ namespace SQL_CSharp.repositories
             }
         }
 
+        /// <summary>
+        /// Returns a customer by it's id.
+        /// </summary>
+        /// <param name="id">Gets id you want the search with</param>
+        /// <returns>Customer</returns>
         public Customer GetById(int id)
         {
             using var connection = new SqlConnection(ConnectionString);
@@ -107,6 +118,11 @@ namespace SQL_CSharp.repositories
             return result;
         }
 
+        /// <summary>
+        /// Return customer by it's name
+        /// </summary>
+        /// <param name="customerName">Gets the name you want to search with</param>
+        /// <returns> IEnumerable<Customer></returns>
         public IEnumerable<Customer> GetCustomerByName(string customerName)
         {
             using var connection = new SqlConnection(ConnectionString);
@@ -115,8 +131,6 @@ namespace SQL_CSharp.repositories
             using var commmand = new SqlCommand(sql, connection);
             commmand.Parameters.AddWithValue("@FirstName", customerName);
             using var reader = commmand.ExecuteReader();
-
-            var result = new Customer();
 
             while (reader.Read())
             {
@@ -145,6 +159,10 @@ namespace SQL_CSharp.repositories
             }
         }
 
+        /// <summary>
+        /// Updates customer
+        /// </summary>
+        /// <param name="entity">Gets a customer entity</param>
         public void Update(Customer entity)
         {
             using var connection = new SqlConnection(ConnectionString);
@@ -163,6 +181,13 @@ namespace SQL_CSharp.repositories
 
         }
 
+
+        /// <summary>
+        /// Returns a list of customers with the given limit and offset.
+        /// </summary>
+        /// <param name="offset">Starts from this point of the list</param>
+        /// <param name="limit">How many customers you want to see</param>
+        /// <returns>IEnumerable<Customer></returns>
         public IEnumerable<Customer> GetListOfCustomersWithLimitAndOffset(int offset, int limit)
         {
             using var connection = new SqlConnection(ConnectionString);
