@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASuikk\\Documents\\Backend\\SQL Client\\SQL-CSharp\\SQL-CSharp\\SQL-CSharp.csproj": {}
+    "C:\\Users\\KWink1\\Documents\\Repos\\SQL-Client\\SQL-CSharp\\SQL-CSharp\\SQL-CSharp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASuikk\\Documents\\Backend\\SQL Client\\SQL-CSharp\\SQL-CSharp\\SQL-CSharp.csproj": {
+    "C:\\Users\\KWink1\\Documents\\Repos\\SQL-Client\\SQL-CSharp\\SQL-CSharp\\SQL-CSharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASuikk\\Documents\\Backend\\SQL Client\\SQL-CSharp\\SQL-CSharp\\SQL-CSharp.csproj",
+        "projectUniqueName": "C:\\Users\\KWink1\\Documents\\Repos\\SQL-Client\\SQL-CSharp\\SQL-CSharp\\SQL-CSharp.csproj",
         "projectName": "SQL-CSharp",
-        "projectPath": "C:\\Users\\ASuikk\\Documents\\Backend\\SQL Client\\SQL-CSharp\\SQL-CSharp\\SQL-CSharp.csproj",
-        "packagesPath": "C:\\Users\\ASuikk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASuikk\\Documents\\Backend\\SQL Client\\SQL-CSharp\\SQL-CSharp\\obj\\",
+        "projectPath": "C:\\Users\\KWink1\\Documents\\Repos\\SQL-Client\\SQL-CSharp\\SQL-CSharp\\SQL-CSharp.csproj",
+        "packagesPath": "C:\\Users\\KWink1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\KWink1\\Documents\\Repos\\SQL-Client\\SQL-CSharp\\SQL-CSharp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ASuikk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\KWink1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -162,5 +162,42 @@ namespace SQL_CSharp.repositories
             command.ExecuteNonQuery();
 
         }
+
+        public IEnumerable<Customer> GetListOfCustomersWithLimitAndOffset(int offset, int limit)
+        {
+            //string offsetString = offset.ToString();
+            //string limitString = limit.ToString();
+            using var connection = new SqlConnection(ConnectionString);
+            connection.Open();
+            var sql = $"SELECT CustomerID, FirstName, LastName, Country, PostalCode, Phone, Email FROM Customer ORDER BY CustomerId OFFSET {offset} ROWS FETCH NEXT {limit} ROWS only";
+            using var command = new SqlCommand(sql, connection);
+            using SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                string postalCode = String.Empty;
+                string phoneNumber = String.Empty;
+
+                if (!reader.IsDBNull(4))
+                {
+                    postalCode = reader.GetString(4);
+                }
+
+                if (!reader.IsDBNull(5))
+                {
+                    phoneNumber = reader.GetString(5);
+                }
+
+                yield return new Customer(
+                    reader.GetInt32(0),
+                    reader.GetString(1),
+                    reader.GetString(2),
+                    reader.GetString(3),
+                    postalCode,
+                    phoneNumber,
+                    reader.GetString(6)
+                    );
+            }
+        }
     }
 }
