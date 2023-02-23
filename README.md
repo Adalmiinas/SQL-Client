@@ -9,7 +9,7 @@
 
 <a name="intro"></a>
 ## 1. Introduction 
-The purpose of this project was to write SQL scripts and build a console application in C# which interects with SQL database. 
+The purpose of this project was to write SQL scripts and build a console application in C# which interacts with SQL database. 
 
 <a name="tech"></a>
 ## 2. Technologies 
